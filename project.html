@@ -1,0 +1,79 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <link rel="stylesheet"
+  type= "text/css" href="mystyle.css">
+  <title>
+    Yourname's WPI Home Page2
+  </title>
+</head>
+<body>
+  <button onclick="changeBackground()">  Change color
+  </button>
+</body>
+<script type="text/javascript">
+  function changeBackground() {
+    document.querySelector("body").style.backgroundColor = "orange"
+  }
+</script>
+<head>
+<style>
+body {
+  background-image: url("https://www.bing.com/images/search?q=cool+background+images&id=BAB75F0CB5DA656D730BEFB144CFD90298342134&FORM=IQFRBA");
+}
+</style>
+</head>
+<body>
+
+<h1>Hello Everybody</h1>
+
+<p>Welcome to my website</p>
+
+<style>
+img {
+  position: absolute;
+  top: 400px;
+  left: 100px;
+}
+</style>
+<h2>Animated Images</h2>
+<p>The GIF standard allows moving images.</p>
+
+<img src= "https://3.bp.blogspot.com/-FkfvlDPhhcc/WUxZPFbTCII/AAAAAAABO3w/Yifc89YICSkK4irP7eYpNNatZhqOXG_3ACLcBGAs/s1600/Jayson%2BTatum.jpg"
+width="300px">
+</body>
+<script>
+var direction = 'right'
+function move() {
+  var left = document.querySelector('img').offsetLeft
+  if (direction=='right' && left+300 > window.innerWidth) {
+    direction = 'left'
+    return
+  } else if (direction=='left' && left < 0) {
+    direction = 'right'
+    return
+  }
+  if (direction == 'right') document.querySelector('img').style.left = `${left + 10}px`
+  if (direction == 'left') document.querySelector('img').style.left = `${left - 10}px`
+}
+setInterval(move, 300)
+</script>
+<body>
+
+  <h2>javascript Functions</h2>
+
+  <p>A function which makes a calculation and gives a result</p>
+
+  <p id="demo"></p>
+
+  <script>
+  var cheese = myFunction(16, 16);
+  document.getElementById("demo").innerHTML = cheese;
+
+  function myFunction(a, b) {
+    return a * b;
+  }
+  </script>
+
+</body>
+</html>

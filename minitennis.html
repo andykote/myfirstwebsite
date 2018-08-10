@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mini-tennis</title>
+  <style>
+    svg {
+      border: 1px solid black;
+    }
+  </style>
+</head>
+<body>
+  <svg width= "500" height= "700">
+    <rect id="handle" x="200" y="690" width="100" height="10" fill="red"/>
+    <circle id="ball" cx="10" cy="10" r="10" fill="blue"/>
+  </svg>
+</body>
+<script>
+  // js in here
+  var ballDirection = 1
+  window.addEventListener('keypress', handleKeyPress)
+
+  function handleKeyPress(e) {
+    var whichKey = String.fromCharCode(e.charCode)
+    if (whichKey=="a") moveHandle(-10)
+    if (whichKey=="d") moveHandle(10)
+  }
+
+  function moveHandle(delta) {
+    document.querySelector('#handle').x.baseVal.value += delta
+  }
+  function getHandlePos() {
+    var start =  document.querySelector('#handle').x.baseVal.value
+    var end = start + 100
+    return { start, end }
+  }
+  function moveBall(dx, dy) {
+    x = document.querySelector('#ball').cx.baseVal.value
+    y = document.querySelector('#ball').cy.baseVal.value
+    switch (ballDirection) {
+      case 1:
+        if (x > 490) {
+          ballDirection = 2
+          return
+        }
+        else if (y > 680 && x > getHandlePos().start && x < getHandlePos().end) {
+          console.log('hit')
+          ballDirection = 2
+          return
+        }
+       // game over case
+        else if (y > 680) {
+          clearInterval(t)
+          alert('GAME OVER')
+          // ballDirection = 2
+          return
+        }
+        dx = dx
+        dy = dy
+        break;
+      case 2:
+        if (x < 10) {
+          ballDirection = 1
+          return
+        }
+        else if (y > 680 && x > getHandlePos().start && x < getHandlePos().end) {
+          console.log('hit')
+          ballDirection = 3
+          return
+        }
+        // game over case
+        else if (y > 680) {
+          clearInterval(t)
+          alert('GAME OVER')
+          // ballDirection = 3
+          return
+        }
+        dx = -dx
+        dy = dy
+        break;
+      case 3:
+        if (x < 10) {
+          ballDirection = 4
+          return
+        } else if (y < 10) {
+          ballDirection = 2
+          return
+        }
+        dx = -dx
+        dy = -dy
+        break;
+      case 4:
+        if (y < 10) {
+          ballDirection = 1
+          return
+        } else if (x > 490) {
+          ballDirection = 3
+          return
+        }
+        dx = dx
+        dy = -dy
+        break;
+      default:
+    }
+
+    document.querySelector('#ball').cx.baseVal.value += dx
+    document.querySelector('#ball').cy.baseVal.value += dy
+
+  }
+  t = setInterval(moveBall, 25, 13, 13)
+</script>
+</html>
